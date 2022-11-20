@@ -1,7 +1,7 @@
 ﻿
 namespace MiniMart
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -30,12 +30,12 @@ namespace MiniMart
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvPro = new System.Windows.Forms.DataGridView();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.materialTextBox21 = new MaterialSkin.Controls.MaterialTextBox2();
@@ -52,16 +52,16 @@ namespace MiniMart
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.inpProName = new MaterialSkin.Controls.MaterialTextBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
-            this.materialButton3 = new MaterialSkin.Controls.MaterialButton();
-            this.materialButton2 = new MaterialSkin.Controls.MaterialButton();
+            this.btnProAdd = new MaterialSkin.Controls.MaterialButton();
+            this.btnProDelete = new MaterialSkin.Controls.MaterialButton();
+            this.btnProUpdate = new MaterialSkin.Controls.MaterialButton();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tabIconList = new System.Windows.Forms.ImageList(this.components);
             this.materialTabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPro)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -114,7 +114,7 @@ namespace MiniMart
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.White;
-            this.tabPage3.Controls.Add(this.dataGridView1);
+            this.tabPage3.Controls.Add(this.dgvPro);
             this.tabPage3.Controls.Add(this.flowLayoutPanel1);
             this.tabPage3.ImageKey = "cubes (1).png";
             this.tabPage3.Location = new System.Drawing.Point(4, 46);
@@ -124,18 +124,20 @@ namespace MiniMart
             this.tabPage3.Size = new System.Drawing.Size(1482, 658);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Product";
-            this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
             // 
-            // dataGridView1
+            // dgvPro
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(544, 5);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 29;
-            this.dataGridView1.Size = new System.Drawing.Size(933, 648);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvPro.AllowUserToAddRows = false;
+            this.dgvPro.AllowUserToDeleteRows = false;
+            this.dgvPro.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPro.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvPro.Location = new System.Drawing.Point(544, 5);
+            this.dgvPro.Name = "dgvPro";
+            this.dgvPro.ReadOnly = true;
+            this.dgvPro.RowHeadersWidth = 51;
+            this.dgvPro.RowTemplate.Height = 29;
+            this.dgvPro.Size = new System.Drawing.Size(933, 648);
+            this.dgvPro.TabIndex = 0;
             // 
             // flowLayoutPanel1
             // 
@@ -244,6 +246,7 @@ namespace MiniMart
             this.inpProUIS.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.inpProUIS.Depth = 0;
             this.inpProUIS.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.inpProUIS.Enabled = false;
             this.inpProUIS.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.inpProUIS.LeadingIcon = null;
             this.inpProUIS.Location = new System.Drawing.Point(132, 288);
@@ -329,7 +332,6 @@ namespace MiniMart
             this.cbbProType.Size = new System.Drawing.Size(362, 49);
             this.cbbProType.StartIndex = 0;
             this.cbbProType.TabIndex = 15;
-            this.cbbProType.SelectedIndexChanged += new System.EventHandler(this.materialComboBox1_SelectedIndexChanged);
             // 
             // materialLabel7
             // 
@@ -386,7 +388,6 @@ namespace MiniMart
             this.materialLabel2.Size = new System.Drawing.Size(115, 19);
             this.materialLabel2.TabIndex = 3;
             this.materialLabel2.Text = "Name";
-            this.materialLabel2.Click += new System.EventHandler(this.materialLabel2_Click);
             // 
             // inpProName
             // 
@@ -412,77 +413,78 @@ namespace MiniMart
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.Controls.Add(this.materialButton1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.materialButton3, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.materialButton2, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnProAdd, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnProDelete, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnProUpdate, 1, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 420);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(505, 54);
             this.tableLayoutPanel2.TabIndex = 8;
             // 
-            // materialButton1
+            // btnProAdd
             // 
-            this.materialButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.materialButton1.Depth = 0;
-            this.materialButton1.HighEmphasis = true;
-            this.materialButton1.Icon = null;
-            this.materialButton1.Location = new System.Drawing.Point(4, 6);
-            this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton1.Name = "materialButton1";
-            this.materialButton1.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton1.Size = new System.Drawing.Size(160, 36);
-            this.materialButton1.TabIndex = 5;
-            this.materialButton1.Text = "Add";
-            this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton1.UseAccentColor = false;
-            this.materialButton1.UseVisualStyleBackColor = true;
+            this.btnProAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnProAdd.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnProAdd.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnProAdd.Depth = 0;
+            this.btnProAdd.HighEmphasis = true;
+            this.btnProAdd.Icon = null;
+            this.btnProAdd.Location = new System.Drawing.Point(4, 9);
+            this.btnProAdd.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnProAdd.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnProAdd.Name = "btnProAdd";
+            this.btnProAdd.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnProAdd.Size = new System.Drawing.Size(160, 36);
+            this.btnProAdd.TabIndex = 5;
+            this.btnProAdd.Text = "Add";
+            this.btnProAdd.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnProAdd.UseAccentColor = false;
+            this.btnProAdd.UseVisualStyleBackColor = true;
+            this.btnProAdd.Click += new System.EventHandler(this.btnProAdd_Click);
             // 
-            // materialButton3
+            // btnProDelete
             // 
-            this.materialButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialButton3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton3.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.materialButton3.Depth = 0;
-            this.materialButton3.HighEmphasis = true;
-            this.materialButton3.Icon = null;
-            this.materialButton3.Location = new System.Drawing.Point(340, 6);
-            this.materialButton3.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton3.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton3.Name = "materialButton3";
-            this.materialButton3.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton3.Size = new System.Drawing.Size(161, 36);
-            this.materialButton3.TabIndex = 7;
-            this.materialButton3.Text = "Delete";
-            this.materialButton3.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton3.UseAccentColor = false;
-            this.materialButton3.UseVisualStyleBackColor = true;
+            this.btnProDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnProDelete.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnProDelete.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnProDelete.Depth = 0;
+            this.btnProDelete.HighEmphasis = true;
+            this.btnProDelete.Icon = null;
+            this.btnProDelete.Location = new System.Drawing.Point(340, 9);
+            this.btnProDelete.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnProDelete.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnProDelete.Name = "btnProDelete";
+            this.btnProDelete.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnProDelete.Size = new System.Drawing.Size(161, 36);
+            this.btnProDelete.TabIndex = 7;
+            this.btnProDelete.Text = "Delete";
+            this.btnProDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnProDelete.UseAccentColor = false;
+            this.btnProDelete.UseVisualStyleBackColor = true;
+            this.btnProDelete.Click += new System.EventHandler(this.btnProDelete_Click);
             // 
-            // materialButton2
+            // btnProUpdate
             // 
-            this.materialButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialButton2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.materialButton2.Depth = 0;
-            this.materialButton2.HighEmphasis = true;
-            this.materialButton2.Icon = null;
-            this.materialButton2.Location = new System.Drawing.Point(172, 6);
-            this.materialButton2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton2.Name = "materialButton2";
-            this.materialButton2.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton2.Size = new System.Drawing.Size(160, 36);
-            this.materialButton2.TabIndex = 6;
-            this.materialButton2.Text = "Update";
-            this.materialButton2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton2.UseAccentColor = false;
-            this.materialButton2.UseVisualStyleBackColor = true;
-            this.materialButton2.Click += new System.EventHandler(this.materialButton2_Click);
+            this.btnProUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnProUpdate.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnProUpdate.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnProUpdate.Depth = 0;
+            this.btnProUpdate.HighEmphasis = true;
+            this.btnProUpdate.Icon = null;
+            this.btnProUpdate.Location = new System.Drawing.Point(172, 9);
+            this.btnProUpdate.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnProUpdate.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnProUpdate.Name = "btnProUpdate";
+            this.btnProUpdate.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnProUpdate.Size = new System.Drawing.Size(160, 36);
+            this.btnProUpdate.TabIndex = 6;
+            this.btnProUpdate.Text = "Update";
+            this.btnProUpdate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnProUpdate.UseAccentColor = false;
+            this.btnProUpdate.UseVisualStyleBackColor = true;
+            this.btnProUpdate.Click += new System.EventHandler(this.btnProUpdate_Click);
             // 
             // tabPage4
             // 
@@ -542,7 +544,7 @@ namespace MiniMart
             this.tabIconList.Images.SetKeyName(16, "bar-chart.png");
             this.tabIconList.Images.SetKeyName(17, "chart.png");
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -552,13 +554,13 @@ namespace MiniMart
             this.DrawerTabControl = this.materialTabControl1;
             this.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(5);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Padding = new System.Windows.Forms.Padding(5, 119, 5, 5);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Convenience Store";
             this.materialTabControl1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPro)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
@@ -580,7 +582,7 @@ namespace MiniMart
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvPro;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private MaterialSkin.Controls.MaterialTextBox inpProName;
@@ -592,11 +594,11 @@ namespace MiniMart
         private MaterialSkin.Controls.MaterialLabel materialLabel7;
         private MaterialSkin.Controls.MaterialLabel materialLabel5;
         private MaterialSkin.Controls.MaterialComboBox cbbProType;
-        private MaterialSkin.Controls.MaterialButton materialButton2;
-        private MaterialSkin.Controls.MaterialButton materialButton1;
+        private MaterialSkin.Controls.MaterialButton btnProUpdate;
+        private MaterialSkin.Controls.MaterialButton btnProAdd;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private MaterialSkin.Controls.MaterialButton materialButton3;
+        private MaterialSkin.Controls.MaterialButton btnProDelete;
         private MaterialSkin.Controls.MaterialTextBox2 materialTextBox21;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private MaterialSkin.Controls.MaterialButton materialButton4;
